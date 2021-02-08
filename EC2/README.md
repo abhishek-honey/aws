@@ -6,6 +6,7 @@
 
 There are many ways to secure EC2 AWS machine, and scale. Here is one of the several ways.
 
+![alt text](https://github.com/abhishek-honey/aws/blob/main/images/AWS%20EC2%20connection%20without%20pem%20file.png?raw=true)
 
 
 In this example there are different teams that are accessing the EC2 AWS Machine and they are having different permissions.
