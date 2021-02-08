@@ -31,54 +31,55 @@ In this step, we will generate a public and private key for the client(laptop, d
 
 We will be able to login using this client only.
 
-Run the following command in your mac console.
+*   Run the following command in your mac console.
 Note: Please install ssh-keygen if not already installed.
 
-```ssh-keygen -f ~/.ssh/god```
+    ```ssh-keygen -f ~/.ssh/god```
 
-The above command will get generated a private & a public key for you inside ```~/.ssh``` directory. The public key will be ```~/.ssh/god.pub``` & private key will be ```~/.ssh/god```
+*   The above command will get generated a private & a public key for you inside ```~/.ssh``` directory. The public key will be ```~/.ssh/god.pub``` & private key will be ```~/.ssh/god```
 
-Copy the content of the public key, we will paste it later in the AWS Linux instance.
+*   Copy the content of the public key, we will paste it later in the AWS Linux instance.
 ```cat ~/.ssh/god.pub```
 
 ### Add the config
 
 In this step, we will add the config to help the ssh command identify the properties that it should use.
 
-Open your config file.
+*   Open your config file.
 ```vi ~.shh/config```
 
-Add the below lines to the config file.
+*   Add the below lines to the config file.
 Note: HostName is the public IP address of the AWS Linux instance.
-```
-Host  godsAws
-  HostName      199.213.178.104
-  User          god
-  IdentityFile  ~/.ssh/god
-```
+    ```
+    Host  godsAws
+    HostName      199.213.178.104
+    User          god
+    IdentityFile  ~/.ssh/god
+    ```
 
 ### Add a Linux user.
 
 You can also refer to the [link](https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/) to get more idea.
 
 
-Log in to EC2 AWS Linux instance. (Normal login)
+*   Log in to EC2 AWS Linux instance. (Normal login)
 
-Paste the below lines in the AWS EC2
-```
-sudo adduser god
-sudo su — god
-mkdir .ssh
-chmod 700 .ssh
-touch .ssh/authorized_keys
-chmod 600 .ssh/authorized_keys
-vi .ssh/authorized_keys
-```
-Now paste the content of cat ```~/.ssh/god.pub``` into the authorized_keys file and __do not forget to add the username at the end.__
+*   Paste the below lines in the AWS EC2
+    ```
+    sudo adduser god
+    sudo su — god
+    mkdir .ssh
+    chmod 700 .ssh
+    touch .ssh/authorized_keys
+    chmod 600 .ssh/authorized_keys
+    vi .ssh/authorized_keys
+    ```
+*   Now paste the content of cat ```~/.ssh/god.pub``` into the authorized_keys file and __do not forget to add the username at the end.__
 
-```ssh-rsa HUIHHKKBAAB3Nhuhuc2EAAAADAioioioiABgQCl… god```
+    ```ssh-rsa HUIHHKKBAAB3Nhuhuc2EAAAADAioioioiABgQCl… god```
 
 As many users as you like can be added and they will be able to connect with the EC2 AWS Linux instance without the pem file.
-Now finally to connect:
+
+__Now finally to connect:__
 
 ```ssh godsAws```
